@@ -54,6 +54,19 @@ const studentModel = new mongoose.Schema({
         trim: true,
         maxlength: [500, "Your address cannot exceed 500 characters"]
     },
+
+
+    resume: {
+        education: [],
+        jobs: [],
+        internships: [],
+        responsibilities: [],
+        courses: [],
+        projects: [],
+        skills: [],
+        accomplishments: [],
+    },
+
     password: {
         type: String,
         required: [true, "Please enter your password"],

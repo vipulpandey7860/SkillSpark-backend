@@ -11,10 +11,10 @@ const { homepage, studentsignup,
 const { isAuthenticated } = require("../middlewares/auth");
 
 
-// GET /
+// GET / - get homepage
 router.get('/', homepage)
 
-//POST /student
+//POST /student - get current user
 router.post('/student',isAuthenticated, currentUser)
 
 
