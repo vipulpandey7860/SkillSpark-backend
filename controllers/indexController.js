@@ -15,7 +15,7 @@ exports.homepage = catchAsyncErrors(async (req, res, next) => {
 
 exports.currentUser = catchAsyncErrors(async (req, res, next) => {
     const student = await Student.findById(req.id).exec();
-    res.json(student);
+    res.status(200).json({student});
 });
 
 
@@ -23,7 +23,7 @@ exports.studentsignup = catchAsyncErrors(async (req, res, next) => {
 
     const student = await new Student(req.body).save();
     sendtoken(student, 201, res);
-    res.status(201).json(student);
+    res.status(201).json({student});
 });
 
 
@@ -39,7 +39,7 @@ exports.studentsignin = catchAsyncErrors(async (req, res, next) => {
 
 exports.studentsignout = catchAsyncErrors(async (req, res, next) => {
     res.clearCookie("token");
-    res.json({
+    res.ststus(200).json({
         message: "Logged out"
     })
 
@@ -54,7 +54,7 @@ exports.studentsendmail = catchAsyncErrors(async (req, res, next) => {
     sendmail(req, res, next, url);
     student.resetPasswordToken = "1";
     await student.save();
-    res.json({ student, url });
+    res.status(200).json({ student, url });
 
 });
 
@@ -80,7 +80,7 @@ exports.studentresetpassword = catchAsyncErrors(async (req, res, next) => {
     await student.save();
     sendtoken(student, 201, res)
 
-    // res.status(200).json({ message: "Password reset successfully" });
+    res.status(200).json({ message: "Password reset successfully" });
 });
 
 exports.studentupdate = catchAsyncErrors(async (req, res, next) => {
@@ -116,6 +116,28 @@ exports.studentavatar = catchAsyncErrors(async (req, res, next) => {
 
 });
 
+exports.studentallinternships = catchAsyncErrors(async (req, res, next) => {
+    const internship = await Internship.find().exec();
+    res.ststus(200).json({internship});
+});
+
+exports.studentalljobs = catchAsyncErrors(async (req, res, next) => {
+    const jobs = await Job.find().exec();
+    res.ststus(200).json({jobs});
+});
+
+exports.studentallcontent = catchAsyncErrors(async (req, res, next) => {
+    const category=req.params.category;
+    if(category==='internship'){
+     const internship=await Internship.find();
+     res.status(200).json({internship});
+    }else if(category==='jobs'){
+     const jobs=await Job.find();
+     res.status(200).json({jobs});
+    }else{
+     res.json({message:"Invalid category"});
+    }
+});
 
 // --------------------------- apply to internship ----------------------------
 
@@ -137,7 +159,7 @@ exports.applyinternship = catchAsyncErrors(async (req, res, next) => {
     await student.save();
     await internship.save();
     
-    res.json(student);
+    res.status(200).json({student});
 });
 
 // --------------------------- apply to job ----------------------------
@@ -159,7 +181,7 @@ exports.applyjob = catchAsyncErrors(async (req, res, next) => {
     await student.save();
     await job.save();
     
-    res.json(student);
+    res.status(200).json({student});
 });
 
 
@@ -171,7 +193,7 @@ exports.deletestudent = catchAsyncErrors(async (req, res, next) => {
     Internship.updateMany({ students: student._id }, { $pull: { students: student._id } }).exec();
     Job.updateMany({ students: student._id }, { $pull: { students: student._id } }).exec();
 
-    res.json({
+    res.status(200).json({
         message: "Student deleted successfully"
     });
 

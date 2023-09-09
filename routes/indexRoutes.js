@@ -13,7 +13,10 @@ const {
     studentavatar,
     applyinternship,
     applyjob,
-    deletestudent
+    deletestudent,
+    studentalljobs,
+    studentallinternships,
+    studentallcontent
 
 } = require("../controllers/indexController");
 const { isAuthenticated } = require("../middlewares/auth");
@@ -53,8 +56,19 @@ router.post('/student/update/:id', isAuthenticated,studentupdate )
 router.post('/student/avatar/:id', isAuthenticated, studentavatar)
 
 // POST /student/delete/:studentid - delete student 
-router.post('/student/delete/:id', isAuthenticated,deletestudent )
+router.post('/student/delete/:id', isAuthenticated, deletestudent)
 
+// POST /student/internships - get all internships
+router.post('/student/internships', isAuthenticated, studentallinternships)
+
+// POST /student/jobs - get all jobs
+router.post('/student/jobs', isAuthenticated, studentalljobs)
+
+
+// --------------------------- student all content ----------------------------
+
+// POST /student/allcontent/:category - get all jobs & internships
+router.post('/student/content/:category', isAuthenticated, studentallcontent)
 
 // --------------------------- apply to internship ----------------------------
 
@@ -66,6 +80,8 @@ router.post('/student/apply/internship/:internshipid', isAuthenticated,applyinte
 
 // POST /student/apply/job/:job_id - apply to job
 router.post('/student/apply/job/:jobid', isAuthenticated,applyjob )
+
+
 
 
 module.exports = router;
