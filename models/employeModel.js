@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const studentModel = new mongoose.Schema({
+
+const employeModel = new mongoose.Schema({
     firstname: {
         type: String,
         required: [true, "Please enter your first name"],
@@ -14,25 +15,27 @@ const studentModel = new mongoose.Schema({
         trim: true,
         maxlength: [50, "Your last name cannot exceed 50 characters"]
     },
-    avatar: {
+    organizationname: {
+        type: String,
+        required: [true, "Please enter your organization name "],
+        trim: true,
+        maxlength: [50, "Your organization name cannot exceed 50 characters"]
+    },
+    organizationlogo: {
         type: Object,
         default: {
             fileId: "",
             url: "https://sipl.ind.in/wp-content/uploads/2022/07/dummy-user.png",
         },
     },
-    gender: {
-        type: String,
-        enum: ["Male", "Female", "Other"],
-                
-    },
+
     email: {
-        type: String, 
+        type: String,
         required: [true, "Please enter your email"],
         trim: true,
         unique: true,
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
-        
+
     },
     contact: {
         type: String,
@@ -48,24 +51,20 @@ const studentModel = new mongoose.Schema({
         trim: true,
         maxlength: [50, "Your city cannot exceed 50 characters"]
     },
-    address: {
-        type: String,
-        required: [true, "Please enter your address"],
-        trim: true,
-        maxlength: [500, "Your address cannot exceed 500 characters"]
-    },
 
-
-    resume: {
-        education: [],
-        jobs: [],
-        internships: [],
-        responsibilities: [],
-        courses: [],
-        projects: [],
-        skills: [],
-        accomplishments: [],
-    },
+    internship: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "internship"
+        }
+    ],
+   
+    job: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "job"
+        }
+    ],
 
     password: {
         type: String,
@@ -88,23 +87,23 @@ const studentModel = new mongoose.Schema({
     }
 )
 
-studentModel.pre('save', function () {
+employeModel.pre('save', function () {
 
     if (!this.isModified('password')) return;
     let salt = bcrypt.genSaltSync(10);
     this.password = bcrypt.hashSync(this.password, salt);
 })
 
-studentModel.methods.comparePassword = function (password) {
+employeModel.methods.comparePassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 
 }
 
 
-studentModel.methods.getjwtToken = function () {
+employeModel.methods.getjwtToken = function () {
     return jwt.sign({ id: this._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_TIME })
 }
 
-const Student = mongoose.model("Student", studentModel);
+const Employe = mongoose.model("Employe", employeModel);
 
-module.exports = Student;
+module.exports = Employe;

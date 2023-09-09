@@ -83,7 +83,7 @@ exports.studentforgetlink = catchAsyncErrors(async (req, res, next) => {
     if (!student) return next(new ErrorHandler("Email not found", 404));
 
     if (student.resetPasswordToken == "1") {
-        student.resetPasswordToken == "0"
+        student.resetPasswordToken = "0"
         student.password = req.body.password;
     } else {
         return next(new ErrorHandler("Link expired, Request a new Link", 404));
