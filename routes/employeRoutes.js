@@ -10,7 +10,14 @@ const {
     employeforgetlink,
     employeresetpassword,
     employeupdate,
-    employeorganizationlogo
+    employeorganizationlogo,
+    createinternship,
+    readinternship,
+    readsingleinternship,
+    createjob,
+    readjob,
+    readsinglejob
+
 
 } = require("../controllers/employeController");
 const { isAuthenticated } = require("../middlewares/auth");
@@ -48,6 +55,31 @@ router.post('/update/:id', isAuthenticated,employeupdate )
 
 // POST /employe/organizationlogo/:employeid - update organizationlogo 
 router.post('/organizationlogo/:id', isAuthenticated,employeorganizationlogo )
+
+
+// -------------------- internship -----------------------------
+
+// POST /employe/internship/create - create internship
+router.post('/internship/create', isAuthenticated,createinternship )
+
+// POST /employe/internship/read - read internship
+router.post('/internship/read', isAuthenticated,readinternship )
+
+// POST /employe/internship/read/:id - read single internship
+router.post('/internship/read/:id', isAuthenticated,readsingleinternship )
+
+
+// -------------------- Jobs -----------------------------
+
+// POST /employe/job/create - create job
+router.post('/job/create', isAuthenticated,createjob )
+
+// POST /employe/job/read - read job
+router.post('/job/read', isAuthenticated,readjob )
+
+// POST /employe/job/read/:id - read single job
+router.post('/job/read/:id', isAuthenticated,readsinglejob )
+
 
 
 module.exports = router;

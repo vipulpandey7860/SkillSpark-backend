@@ -42,7 +42,7 @@ const employeModel = new mongoose.Schema({
         required: [true, "Please enter your contact number"],
         trim: true,
         unique: true,
-        minlength: [10, "Your phone number must be 10 characters"],
+        minlength: [10, "Your phone number must be atleast 10 characters"],
         maxlength: [10, "Your phone number cannot exceed 10 characters"],
     },
     city: {
@@ -52,17 +52,17 @@ const employeModel = new mongoose.Schema({
         maxlength: [50, "Your city cannot exceed 50 characters"]
     },
 
-    internship: [
+    internships: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "internship"
+            ref: "Internship"
         }
     ],
    
-    job: [
+    jobs: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "job"
+            ref: "Job"
         }
     ],
 
@@ -73,7 +73,7 @@ const employeModel = new mongoose.Schema({
         select: false,
         minlength: [6, "Your password must be longer than 6 characters"],
         maxlength: [12, "Your password cannot exceed 12 characters"],
-        // match: [/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/, 'Please fill a valid password']
+        match: [/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/, 'Please fill a valid password']
     },
     resetPasswordToken: {
         type: String,
