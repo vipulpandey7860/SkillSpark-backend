@@ -12,6 +12,10 @@ require("./models/database").connectDatabase();
 const logger = require("morgan");
 // message tiny minimal info
 app.use(logger("tiny"));
+app.use(cors({
+    credentials:true,
+    origin:true
+  }));
 
 // body parser
 app.use(express.json());
