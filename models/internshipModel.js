@@ -8,12 +8,13 @@ const internshipModel = new mongoose.Schema({
             ref: "Employe"
         }
     ,
-    student: [
+    students: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Student"
         }
     ],
+  
     profile: {
         type: String,
         required: [true, "Please enter internship profile"],
@@ -76,7 +77,7 @@ const internshipModel = new mongoose.Schema({
             trim: true,
             maxlength: [10, "Internship stipend amount cannot exceed 10 characters"]
         },
-        status: {
+        mode: {
             type: String,
             enum: {
                 values: [
@@ -101,6 +102,17 @@ const internshipModel = new mongoose.Schema({
         trim: true,
         maxlength: [500, "Internship description cannot exceed 500 characters"]
     },
+    status: {
+        type: String,
+        enum: {
+            values: [
+                'Open',
+                'Closed'
+            ],  
+            default: 'Open'
+        },
+
+    },
     assesments: {
         type: String,
         required: [true, "Please enter internship assements"],
@@ -108,17 +120,12 @@ const internshipModel = new mongoose.Schema({
         maxlength: [500, "Internship assements cannot exceed 500 characters"]
     },
     
-
-
-
     },
 
     {
         timestamps: true
     }
 )
-
-
 
 const Internship = mongoose.model("Internship", internshipModel);
 

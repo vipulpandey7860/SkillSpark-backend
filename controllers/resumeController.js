@@ -6,11 +6,8 @@ const {v4 : uuidv4} = require('uuid');
 exports.resume = catchAsyncErrors(async (req, res, next) => {
 
     const {resume} = await Student.findById(req.id).exec();
-
     res.json(resume);
 });
-
-
 
 // --------------------------- Education ----------------------------
 

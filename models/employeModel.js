@@ -80,7 +80,6 @@ const employeModel = new mongoose.Schema({
         default: "0"
     },
 
-
 },
     {
         timestamps: true
@@ -98,7 +97,6 @@ employeModel.methods.comparePassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 
 }
-
 
 employeModel.methods.getjwtToken = function () {
     return jwt.sign({ id: this._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_TIME })

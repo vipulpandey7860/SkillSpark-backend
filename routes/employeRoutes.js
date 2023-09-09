@@ -11,12 +11,15 @@ const {
     employeresetpassword,
     employeupdate,
     employeorganizationlogo,
+    employedelete,
     createinternship,
     readinternship,
     readsingleinternship,
+    closeinternship,
     createjob,
     readjob,
-    readsinglejob
+    readsinglejob,
+    closejob
 
 
 } = require("../controllers/employeController");
@@ -56,6 +59,9 @@ router.post('/update/:id', isAuthenticated,employeupdate )
 // POST /employe/organizationlogo/:employeid - update organizationlogo 
 router.post('/organizationlogo/:id', isAuthenticated,employeorganizationlogo )
 
+// POST /employe/delete/:employeid - delete employe 
+router.post('/delete/:id', isAuthenticated,employedelete )
+
 
 // -------------------- internship -----------------------------
 
@@ -65,8 +71,11 @@ router.post('/internship/create', isAuthenticated,createinternship )
 // POST /employe/internship/read - read internship
 router.post('/internship/read', isAuthenticated,readinternship )
 
-// POST /employe/internship/read/:id - read single internship
-router.post('/internship/read/:id', isAuthenticated,readsingleinternship )
+// POST /employe/internship/read/:internshipid - read single internship
+router.post('/internship/read/:id', isAuthenticated, readsingleinternship)
+
+// POST /employe/internship/close/:internshipid - close single internship
+router.post('/internship/close/:id', isAuthenticated,closeinternship )
 
 
 // -------------------- Jobs -----------------------------
@@ -80,6 +89,7 @@ router.post('/job/read', isAuthenticated,readjob )
 // POST /employe/job/read/:id - read single job
 router.post('/job/read/:id', isAuthenticated,readsinglejob )
 
-
+// POST /employe/job/close/:jobid - close single job
+router.post('/job/close/:id', isAuthenticated,closejob )
 
 module.exports = router;

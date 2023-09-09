@@ -8,12 +8,22 @@ const jobModel = new mongoose.Schema({
             ref: "Employe"
         }
     ,
-    student: [
+    students: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Student"
         }
     ],
+    status: {
+        type: String,
+        enum: {
+            values: [
+                'Open',
+                'Closed'
+            ],  
+        },
+        default: 'Open'
+    },
     title: {
         type: String,
         required: [true, "Please enter internship profile"],

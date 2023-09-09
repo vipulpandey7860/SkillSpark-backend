@@ -119,5 +119,4 @@ router.post("/edit-acomp/:acompid", isAuthenticated, editacomp);
 // POST /delete-acomp - delete acomp
 router.post("/delete-acomp/:acompid", isAuthenticated, deleteacomp);
 
-
 module.exports = router;
