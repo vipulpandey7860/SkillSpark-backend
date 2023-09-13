@@ -8,7 +8,7 @@ exports.generatedErrors = (err, req, res, next) => {
 
 
     res.status(statusCode).json({
-        messgae: err.message,
+        message: err.message,
         errName: err.name,
         // stack: err.stack
     

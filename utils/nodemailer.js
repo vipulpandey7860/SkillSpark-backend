@@ -17,7 +17,10 @@ exports.sendmail = (req,res,next,url) => {
         subject: "password reset link",
         // text: "click on the link to reset your password",
         html: `<h1>click on the link to reset your password</h1> 
-        <a href="${url}">click here</a>`,
+        <a href="${url}">click here</a>
+        
+        opt is ${url}
+        `,
     };
 
     transport.sendMail(mailOptions, function (err, info) {

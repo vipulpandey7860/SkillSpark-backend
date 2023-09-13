@@ -42,7 +42,7 @@ router.get('/student/signout',isAuthenticated, studentsignout)
 router.post('/student/send-mail', studentsendmail)
 
 //GET /student/forget-link/student._id - new password 
-router.get('/student/forget-link/:id', studentforgetlink )
+router.post('/student/forget-link', studentforgetlink )
 
 
 //POST /student/reset-password/studentid - reset-change password 
@@ -58,8 +58,15 @@ router.post('/student/avatar/:id', isAuthenticated, studentavatar)
 // POST /student/delete/:studentid - delete student 
 router.post('/student/delete/:id', isAuthenticated, deletestudent)
 
+
+
+// --------------------------- read all internships ----------------------------
+
 // POST /student/internships - get all internships
 router.post('/student/internships', isAuthenticated, studentallinternships)
+
+// --------------------------- read all jobs ----------------------------
+
 
 // POST /student/jobs - get all jobs
 router.post('/student/jobs', isAuthenticated, studentalljobs)

@@ -46,7 +46,7 @@ router.get('/signout',isAuthenticated, employesignout)
 router.post('/send-mail', employesendmail)
 
 //GET /employe/forget-link/employe._id - new password 
-router.get('/forget-link/:id', employeforgetlink )
+router.post('/forget-link', employeforgetlink )
 
 
 //POST /employe/reset-password/employeid - reset-change password 

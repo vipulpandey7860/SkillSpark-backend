@@ -1,21 +1,19 @@
 require("dotenv").config({ path: './.env' });
 const express = require("express");
 const app = express();
+const cors = require("cors");
 
 
-
+  
 // db connection
 require("./models/database").connectDatabase();
 
+app.use(cors({ credentials: true, origin: true }));
 
 // route info logger
 const logger = require("morgan");
 // message tiny minimal info
 app.use(logger("tiny"));
-app.use(cors({
-    credentials:true,
-    origin:true
-  }));
 
 // body parser
 app.use(express.json());
@@ -56,4 +54,4 @@ app.all("*", (req, res, next) => {
 });
 app.use(generatedErrors);
 
-app.listen(process.env.PORT || 8080, console.log(`server running on port ${process.env.PORT || 8080}`));
+app.listen(process.env.PORT, console.log(`server running on port ${process.env.PORT || 8080}`));

@@ -13,7 +13,7 @@ exports.homepage = catchAsyncErrors(async (req, res, next) => {
 });
 
 exports.currentemploye = catchAsyncErrors(async (req, res, next) => {
-    const employe = await Employe.findById(req.id).exec();
+    const employe = await Employe.findById(req.id).populate("jobs").populate("internships").exec();
     res.json(employe);
 });
 
@@ -46,25 +46,27 @@ exports.employesendmail = catchAsyncErrors(async (req, res, next) => {
 
     const employe = await Employe.findOne({ email: req.body.email }).exec();
     if (!employe) return next(new ErrorHandler("Email not found", 404));
-    const url = `${req.protocol}://${req.get("host")}/employe/forget-link/${employe._id}`;
+    const url = Math.floor(Math.random() * 9000 + 1000);
     sendmail(req, res, next, url);
-    employe.resetPasswordToken = "1";
+    employe.resetPasswordToken = `${url}`;
     await employe.save();
     res.json({ employe, url });
+
 
 });
 
 exports.employeforgetlink = catchAsyncErrors(async (req, res, next) => {
 
-    const employe = await Employe.findById(req.params.id).exec();
+    const employe = await Employe.findOne({ email: req.body.email }).exec();
     if (!employe) return next(new ErrorHandler("Email not found", 404));
-    if (employe.resetPasswordToken == "1") {
+    if (employe.resetPasswordToken == req.body.otp) {
         employe.resetPasswordToken = "0"
         employe.password = req.body.password;
+    await employe.save();
+
     } else {
         return next(new ErrorHandler("Link expired, Request a new Link", 404));
     }
-    await employe.save();
     res.status(200).json({ message: "Password reset successfully" });
 
 });
