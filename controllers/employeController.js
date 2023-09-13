@@ -5,7 +5,7 @@ const Job = require('../models/jobModel');
 const ErrorHandler = require('../utils/ErrorHandler');
 const { sendtoken } = require('../utils/SendToken');
 const { sendmail } = require('../utils/nodemailer');
-const imagekit = require('../utils/imageKit').initImageKit();
+const imagekit = require('../utils/imagekit').initImageKit();
 const path = require('path');
 
 exports.homepage = catchAsyncErrors(async (req, res, next) => {
