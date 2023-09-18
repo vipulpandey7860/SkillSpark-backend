@@ -23,6 +23,7 @@ exports.studentsignup = catchAsyncErrors(async (req, res, next) => {
 
     const student = await new Student(req.body).save();
     sendtoken(student, 201, res);
+    
 });
 
 
@@ -33,7 +34,7 @@ exports.studentsignin = catchAsyncErrors(async (req, res, next) => {
     const isMatch = student.comparePassword(req.body.password);
     if (!isMatch) return next(new ErrorHandler("Invalid Credientials", 404));
     sendtoken(student, 201, res)
-
+   
 });
 
 exports.studentsignout = catchAsyncErrors(async (req, res, next) => {
@@ -123,12 +124,12 @@ exports.studentavatar = catchAsyncErrors(async (req, res, next) => {
 // -----------------------read all internship and jobs --------------------------
 
 exports.studentallinternships = catchAsyncErrors(async (req, res, next) => {
-    const internship = await Internship.find().exec();
+    const internship = await Internship.find().populate('employe').exec();
     res.status(200).json({ internship });
 });
 
 exports.studentalljobs = catchAsyncErrors(async (req, res, next) => {
-    const jobs = await Job.find().exec();
+    const jobs = await Job.find().populate('employe').exec();
     res.status(200).json({ jobs });
 });
 

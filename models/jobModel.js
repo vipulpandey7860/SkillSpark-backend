@@ -26,9 +26,9 @@ const jobModel = new mongoose.Schema({
     },
     title: {
         type: String,
-        required: [true, "Please enter internship profile"],
+        required: [true, "Please enter job profile"],
         trim: true,
-        maxlength: [50, "Internship profile cannot exceed 50 characters"]
+        maxlength: [50, "job profile cannot exceed 50 characters"]
     },
     skills: {
         type: String,
@@ -44,16 +44,16 @@ const jobModel = new mongoose.Schema({
                 'Remote'
             ],
         },
-        required: [true, "Please enter internship type"],
+        required: [true, "Please enter job type"],
         trim: true,
-        maxlength: [20, "Internship type cannot exceed 20 characters"]
+        maxlength: [20, "job type cannot exceed 20 characters"]
     },
     
     openings: {
         type: String,
-        required: [true, "Please enter internship openings"],
+        required: [true, "Please enter job openings"],
         trim: true,
-        maxlength: [10, "Internship openings cannot exceed 10 characters"]
+        maxlength: [10, "job openings cannot exceed 10 characters"]
     },
     salary: {
         type: Number,
@@ -63,21 +63,21 @@ const jobModel = new mongoose.Schema({
     },
     perks: {
         type: String,
-        required: [true, "Please enter internship perks"],
+        required: [true, "Please enter job perks"],
         trim: true,
-        maxlength: [500, "Internship perks cannot exceed 500 characters"]
+        maxlength: [500, "job perks cannot exceed 500 characters"]
     },
     assesments: {
         type: String,
-        required: [true, "Please enter internship assements"],
+        required: [true, "Please enter job assements"],
         trim: true,
-        maxlength: [500, "Internship assements cannot exceed 500 characters"]
+        maxlength: [500, "job assements cannot exceed 500 characters"]
     },
     description: {
         type: String,
-        required: [true, "Please enter internship description"],
+        required: [true, "Please enter job description"],
         trim: true,
-        maxlength: [500, "Internship description cannot exceed 500 characters"]
+        maxlength: [500, "job description cannot exceed 500 characters"]
     },
     preferences: {
         type: String,
