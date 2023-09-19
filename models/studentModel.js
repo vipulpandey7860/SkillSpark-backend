@@ -18,7 +18,7 @@ const studentModel = new mongoose.Schema({
         type: Object,
         default: {
             fileId: "",
-            url: "https://sipl.ind.in/wp-content/uploads/2022/07/dummy-user.png",
+            url: "https://d11a6trkgmumsb.cloudfront.net/original/3X/d/8/d8b5d0a738295345ebd8934b859fa1fca1c8c6ad.jpeg",
         },
     },
     gender: {

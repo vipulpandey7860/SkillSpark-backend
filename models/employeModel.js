@@ -25,7 +25,7 @@ const employeModel = new mongoose.Schema({
         type: Object,
         default: {
             fileId: "",
-            url: "https://sipl.ind.in/wp-content/uploads/2022/07/dummy-user.png",
+            url: "https://www.market-research-companies.in//images/default.jpg",
         },
     },
 
