@@ -27,9 +27,9 @@ exports.employesignup = catchAsyncErrors(async (req, res, next) => {
 exports.employesignin = catchAsyncErrors(async (req, res, next) => {
 
     const employe = await Employe.findOne({ email: req.body.email }).select("+password").exec();
-    if (!employe) return next(new ErrorHandler("Invalid Email", 404));
+    if (!employe) return next(new ErrorHandler("User not found with this Email", 404));
     const isMatch = employe.comparePassword(req.body.password);
-    if (!isMatch) return next(new ErrorHandler("Invalid Password", 404));
+    if (!isMatch) return next(new ErrorHandler("Invalid Credientials", 404));
     sendtoken(employe, 201, res)
 
 });
