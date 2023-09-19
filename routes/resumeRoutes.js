@@ -78,45 +78,45 @@ router.post("/delete-resp/:respid", isAuthenticated, deleteresp);
 // ----------------------------Courses--------------------
 
 // POST /add-cours - add cours
-router.post("/add-cours", isAuthenticated, addcours);
+router.post("/add-course", isAuthenticated, addcours);
 
 // POST /edit-cours - edit cours
-router.post("/edit-cours/:coursid", isAuthenticated, editcours);
+router.post("/edit-course/:courseid", isAuthenticated, editcours);
 
 // POST /delete-cours - delete cours
-router.post("/delete-cours/:coursid", isAuthenticated, deletecours);
+router.post("/delete-course/:courseid", isAuthenticated, deletecours);
 
 // ----------------------------projects--------------------
 
 // POST /add-proj - add proj
-router.post("/add-proj", isAuthenticated, addproj);
+router.post("/add-project", isAuthenticated, addproj);
 
 // POST /edit-proj - edit proj
-router.post("/edit-proj/:projid", isAuthenticated, editproj);
+router.post("/edit-project/:projid", isAuthenticated, editproj);
 
 // POST /delete-proj - delete proj
-router.post("/delete-proj/:projid", isAuthenticated, deleteproj);
+router.post("/delete-project/:projid", isAuthenticated, deleteproj);
 
 // ----------------------------skills--------------------
 
 // POST /add-skil - add skil
-router.post("/add-skil", isAuthenticated, addskil);
+router.post("/add-skill", isAuthenticated, addskil);
 
 // POST /edit-skil - edit skil
-router.post("/edit-skil/:skilid", isAuthenticated, editskil);
+router.post("/edit-skill/:skilid", isAuthenticated, editskil);
 
 // POST /delete-skil - delete skil
-router.post("/delete-skil/:skilid", isAuthenticated, deleteskil);
+router.post("/delete-skill/:skilid", isAuthenticated, deleteskil);
 
 // ----------------------------accomplishments--------------------
 
 // POST /add-acomp - add acomp
-router.post("/add-acomp", isAuthenticated, addacomp);
+router.post("/add-accomplishment", isAuthenticated, addacomp);
 
 // POST /edit-acomp - edit acomp
-router.post("/edit-acomp/:acompid", isAuthenticated, editacomp);
+router.post("/edit-accomplishment/:acompid", isAuthenticated, editacomp);
 
 // POST /delete-acomp - delete acomp
-router.post("/delete-acomp/:acompid", isAuthenticated, deleteacomp);
+router.post("/delete-accomplishment/:acompid", isAuthenticated, deleteacomp);
 
 module.exports = router;

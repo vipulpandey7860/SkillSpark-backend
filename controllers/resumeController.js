@@ -148,9 +148,9 @@ exports.addcours = catchAsyncErrors(async (req, res, next) => {
 exports.editcours = catchAsyncErrors(async (req, res, next) => {
     const student = await Student.findById(req.id).exec();
     const coursIndex = student.resume.courses.findIndex(
-        (i) => i.id === req.params.coursid
+        (i) => i.id === req.params.courseid
     );
-    student.resume.jobs[coursIndex] = {
+    student.resume.courses[coursIndex] = {
         ...student.resume.courses[coursIndex],
         ...req.body,
     };
@@ -161,7 +161,7 @@ exports.editcours = catchAsyncErrors(async (req, res, next) => {
 exports.deletecours = catchAsyncErrors(async (req, res, next) => {
     const student = await Student.findById(req.id).exec();
     const filteredcours = student.resume.courses.filter(
-        (i) => i.id !== req.params.coursid
+        (i) => i.id !== req.params.courseid
     );
     student.resume.courses = filteredcours;
     await student.save();
@@ -179,7 +179,7 @@ exports.addproj = catchAsyncErrors(async (req, res, next) => {
 
 exports.editproj = catchAsyncErrors(async (req, res, next) => {
     const student = await Student.findById(req.id).exec();
-    const projIndex = student.resume.proj.findIndex(
+    const projIndex = student.resume.projects.findIndex(
         (i) => i.id === req.params.projid
     );
     student.resume.projects[projIndex] = {

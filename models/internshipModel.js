@@ -25,7 +25,7 @@ const internshipModel = new mongoose.Schema({
         type: String,
         required: [true, "Please enter skills"],
         trim: true,
-        maxlength: [100, "Skills cannot exceed 100 characters"]
+        maxlength: [500, "Skills cannot exceed 500 characters"]
     },
     internshiptype: {
         type: String,
