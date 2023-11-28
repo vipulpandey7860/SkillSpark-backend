@@ -3,8 +3,6 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 
-
-  
 // db connection
 require("./models/database").connectDatabase();
 
